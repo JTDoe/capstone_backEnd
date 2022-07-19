@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JTDoe/capstone_backEnd/issues"
   },
-  "homepage": "https://github.com/JTDoe/capstone_backEnd#readme"
+  "homepage": "https://github.com/JTDoe/capstone_backEnd#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
