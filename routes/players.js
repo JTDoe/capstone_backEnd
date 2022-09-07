@@ -1,9 +1,9 @@
-const express = require("express");
-const teamsController = require("../controllers/teams");
-const router = express.Router();
+// const express = require("express");
+// const teamsController = require("../controllers/teams");
+// const router = express.Router();
 
-router.get("/:id", teamsController.getTeamID);
+// router.get("/:id", teamsController.getTeamID);
 
-router.get("/:zip", teamsController.getTeamName);
+// router.get("/:zip", teamsController.getTeamName);
 
-module.exports = router;
+// module.exports = router;
