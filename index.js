@@ -1,7 +1,7 @@
 const express = require("express");
-const coachesRouter = require("./routes/coaches");
-const teamsRouter = require("./routes/teams");
-const playersRouter = require("./routes/players");
+const coachesRouter = require("./routes/coachRoute");
+const teamsRouter = require("./routes/teamRoute");
+const playersRouter = require("./routes/playerRoute");
 const { headCoaches, newTeams, newPlayers } = require("./data/data.js");
 const { v4 } = require("uuid");
 const app = express();

@@ -1,5 +1,6 @@
 const mysql = require("mysql");
-const pool = require("../mysql/connection.js");
+const { headCoaches } = require("./data/data.js");
+const pool = require("../mysql/connection.js") ;
 const { handleSQLError } = require("../mysql/error.js");
 
 const getCoaches = (req, res) => {

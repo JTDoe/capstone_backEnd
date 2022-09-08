@@ -1,5 +1,5 @@
 module.exports = {
-  headCoaches: [
+  headcoaches: [
     {
       id: 1,
       first_name: "Grady",
@@ -31,7 +31,7 @@ module.exports = {
       email: "bisabell4@google.de",
     },
   ],
-  newPlayers: [
+  players: [
     {
       id: 1,
       first_name: "Chrisy",
@@ -58,7 +58,7 @@ module.exports = {
       last_name: "Tixall",
     },
   ],
-  newTeams: [
+  teams: [
     {
       id: 1,
       team_name: "Sharks",
