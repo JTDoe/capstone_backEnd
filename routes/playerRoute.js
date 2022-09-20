@@ -1,9 +1,19 @@
-// const express = require("express");
-// const teamsController = require("../controllers/teams");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
+const {
+  getPlayers,
+  getPlayersFirstName,
+  getPlayersLastName,
+  create,
+  update,
+  remove,
+} = require("../controllers/customerControllers");
 
-// router.get("/:id", teamsController.getTeamID);
+router.get("/", getPlayers);
+router.get("/:first_name", getPlayersFirstName);
+router.get("/:id/last_name", getPlayersLastName);
+router.post("/", create);
+router.put("/:id", update);
+router.delete("/:id", remove);
 
-// router.get("/:zip", teamsController.getTeamName);
-
-// module.exports = router;
+module.exports = router;

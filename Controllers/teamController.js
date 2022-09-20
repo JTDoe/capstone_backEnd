@@ -1,47 +1,62 @@
-const { newTeams } = require("../data/data");
+const pool = require("../sql/connection");
+const mysql = require("mysql");
 
 const list = (req, res) => {
-  res.json(newTeams);
+  pool.query("SELECT * FROM teams", (err, rows) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(rows);
+  });
 };
 
 const show = (req, res) => {
-  const team = newTeams.find((x) => x.id === req.params.id);
-  res.json(newTeams);
+  pool.query(`SELECT * FROM teams WHERE id = ${req.params.id}`, (err, row) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(row);
+  });
 };
 
 const create = (req, res) => {
-  const { body } = req;
+  const { title, retail_price, user_id } = req.body;
 
-  let newTeams = {
-    ...body,
-    id: v4(),
-  };
-
-  trades.push(newTeamss);
-  res.json(newTrade);
+  pool.query(
+    `INSERT INTO teams (title, retail_price, user_id) 
+      VALUES ("${title}","${retail_price}", "${user_id}")`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
 };
 
 const update = (req, res) => {
-  const trade = trades.find((x) => x.id === req.params.id);
-  const tradeIndex = trades.findIndex((x) => x.id === req.params.id);
-
-  const { body } = req;
-
-  let newTrade = {
-    ...trade,
-    ...body,
-  };
-
-  trades.splice(tradeIndex, 1, newTrade);
-  res.json(trades);
+  let sql = "UPDATE ?? SET ? WHERE ?? = ?";
+  sql = mysql.format(sql, ["teams", req.body, "id", req.params.id]);
+  pool.query(sql, (err, row) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(row);
+  });
 };
 
 const remove = (req, res) => {
-  const trade = trades.find((x) => x.id === req.params.id);
-  const tradeIndex = trades.findIndex((x) => x.id === req.params.id);
-
-  trades.splice(tradeIndex, 1);
-  res.json(trades);
+  pool.query(`DELETE FROM teams WHERE id = ${req.params.id}`, (err, row) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(row);
+  });
 };
 
 module.exports = {

@@ -1,11 +1,17 @@
-// const express = require("express");
-// const playersController = require("../controllers/players");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
+const {
+  list,
+  show,
+  create,
+  update,
+  remove,
+} = require("../controllers/customerControllers");
 
-// router.get("/:first_name", playersController.getPlayerFirstName);
+router.get("/", list);
+router.get("/:first_name", show);
+router.post("/", create);
+router.put("/:id", update);
+router.delete("/:id", remove);
 
-// router.get("/:last_name", playersController.getPlayerLastName);
-
-// router.get("/:position", playersController.getPlayerPosition);
-
-// module.exports = router;
+module.exports = router;

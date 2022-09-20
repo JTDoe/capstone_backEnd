@@ -1,34 +1,90 @@
-const mysql = require("mysql");
+// const mysql = require("mysql");
+// const { headCoaches } = require("./data/data.js");
 const pool = require("../mysql/connection.js");
 const { handleSQLError } = require("../mysql/error.js");
 
-const getPlayerFirstName = (req, res) => {
-  pool.query(sql, (err, rows) => {
-    if (err) return handleSQLError(res, err);
-    return res.json(rows);
+const getPlayers = (req, res) => {
+  pool.query("SELECT * FROM players", (err, rows) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(rows);
   });
 };
 
-const getPlayerLastName = (req, res) => {
-  sql = mysql.format(sql, []);
+const getPlayersFirstName = (req, res) => {
+  pool.query(
+    `SELECT * FROM players WHERE first_name = ${req.params.first_name}`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
+};
 
-  pool.query(sql, (err, rows) => {
-    if (err) return handleSQLError(res, err);
-    return res.json(rows);
+const getPlayersLastName = (req, res) => {
+  pool.query(
+    `SELECT * FROM players WHERE last_name = ${req.params.last_name}`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
+};
+
+const create = (req, res) => {
+  const { first_name, last_name, email } = req.body;
+
+  pool.query(
+    `INSERT INTO players (first_name, last_name, email) 
+      VALUES ("${first_name}","${last_name}", "${email}")`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
+};
+
+const update = (req, res) => {
+  let sql = "UPDATE ?? SET ? WHERE ?? = ?";
+  sql = mysql.format(sql, ["players", req.body, "id", req.params.id]);
+  pool.query(sql, (err, row) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
+    }
+    res.json(row);
   });
 };
 
-const getPlayerPosition = (req, res) => {
-  sql = mysql.format(sql, []);
-
-  sql = mysql.format(sql, (err, rows) => {
-    if (err) return handleSQLError(res, err);
-    return res.json(rows);
-  });
+const remove = (req, res) => {
+  pool.query(
+    `DELETE FROM players WHERE id = ${req.params.id}`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
 };
 
 module.exports = {
-  getPlayerFirstName,
-  getPlayerLastName,
-  getPlayerPosition,
+  getPlayers,
+  getPlayersFirstName,
+  getPlayersLastName,
+  create,
+  update,
+  remove,
 };
