@@ -6,10 +6,10 @@ const {
   create,
   update,
   remove,
-} = require("../controllers/customerControllers");
+} = require("../controllers/teamController");
 
 router.get("/", list);
-router.get("/:first_name", show);
+router.get("/:team_name", show);
 router.post("/", create);
 router.put("/:id", update);
 router.delete("/:id", remove);

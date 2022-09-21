@@ -7,7 +7,7 @@ const {
   create,
   update,
   remove,
-} = require("../controllers/customerControllers");
+} = require("../controllers/playerController");
 
 router.get("/", getPlayers);
 router.get("/:first_name", getPlayersFirstName);

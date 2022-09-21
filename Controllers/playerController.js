@@ -1,7 +1,7 @@
 // const mysql = require("mysql");
 // const { headCoaches } = require("./data/data.js");
-const pool = require("../mysql/connection.js");
-const { handleSQLError } = require("../mysql/error.js");
+const pool = require("../mysql/connection");
+// const { handleSQLError } = require("../mysql/error.js");
 
 const getPlayers = (req, res) => {
   pool.query("SELECT * FROM players", (err, rows) => {

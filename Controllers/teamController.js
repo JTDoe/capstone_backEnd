@@ -1,4 +1,4 @@
-const pool = require("../sql/connection");
+const pool = require("../mysql/connection");
 const mysql = require("mysql");
 
 const list = (req, res) => {
@@ -22,11 +22,11 @@ const show = (req, res) => {
 };
 
 const create = (req, res) => {
-  const { title, retail_price, user_id } = req.body;
+  const { id, team_name } = req.body;
 
   pool.query(
-    `INSERT INTO teams (title, retail_price, user_id) 
-      VALUES ("${title}","${retail_price}", "${user_id}")`,
+    `INSERT INTO teams (id, team_name) 
+      VALUES ("${id}","${team_name}")`,
     (err, row) => {
       if (err) {
         console.log({ message: "Error occurred: " + err });

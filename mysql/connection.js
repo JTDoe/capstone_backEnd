@@ -1,9 +1,7 @@
-
 const mysql = require("mysql");
 require("dotenv").config();
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT } = process.env;
-console.log(DB_HOST);
 
 class Connection {
   constructor() {
