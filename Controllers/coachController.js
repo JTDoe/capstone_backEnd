@@ -12,15 +12,16 @@ const getCoaches = (req, res) => {
   });
 };
 
-const getCoachesFirstName = (req, res) => {
+const showTeamByCoach = (req, res) => {
   pool.query(
-    `SELECT * FROM headcoaches WHERE first_name = ${req.params.first_name}`,
+    `SELECT * FROM teams JOIN coaches WHERE id = ${req.params.id} AND teams = ${req.params.id}`,
     (err, row) => {
       if (err) {
         console.log({ message: "Error occurred: " + err });
         return res.status(500).send("An unexpected error occurred");
       }
-      res.json(row);
+      console.log(row);
+      // res.json(row);
     }
   );
 };
@@ -81,7 +82,7 @@ const remove = (req, res) => {
 
 module.exports = {
   getCoaches,
-  getCoachesFirstName,
+  showTeamByCoach,
   getCoachesLastName,
   create,
   update,
