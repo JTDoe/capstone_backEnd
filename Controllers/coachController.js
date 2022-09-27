@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const pool = require("../mysql/connection.js");
+const pool = require("../mysql/connection");
 
 const getCoaches = (req, res) => {
   pool.query("SELECT * FROM headcoaches", (err, rows) => {
@@ -7,34 +7,8 @@ const getCoaches = (req, res) => {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
     }
-    res.json(row);
+    res.json(rows);
   });
-};
-
-const showTeamByCoach = (req, res) => {
-  pool.query(
-    `SELECT * FROM teams JOIN coaches WHERE id = ${req.params.id} AND teams = ${req.params.id}`,
-    (err, row) => {
-      if (err) {
-        console.log({ message: "Error occurred: " + err });
-        return res.status(500).send("An unexpected error occurred");
-      }
-      res.json(row);
-    }
-  );
-};
-
-const getCoachesLastName = (req, res) => {
-  pool.query(
-    `SELECT * FROM headcoaches WHERE last_name = ${req.params.last_name}`,
-    (err, row) => {
-      if (err) {
-        console.log({ message: "Error occurred: " + err });
-        return res.status(500).send("An unexpected error occurred");
-      }
-      res.json(row);
-    }
-  );
 };
 
 const create = (req, res) => {
@@ -80,8 +54,6 @@ const remove = (req, res) => {
 
 module.exports = {
   getCoaches,
-  showTeamByCoach,
-  getCoachesLastName,
   create,
   update,
   remove,

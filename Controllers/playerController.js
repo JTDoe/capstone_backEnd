@@ -1,7 +1,6 @@
 const mysql = require("mysql");
 const pool = require("../mysql/connection");
 
-
 const getPlayers = (req, res) => {
   pool.query("SELECT * FROM players", (err, rows) => {
     if (err) {
@@ -10,32 +9,6 @@ const getPlayers = (req, res) => {
     }
     res.json(rows);
   });
-};
-
-const getPlayersFirstName = (req, res) => {
-  pool.query(
-    `SELECT * FROM players WHERE first_name = ${req.params.first_name}`,
-    (err, row) => {
-      if (err) {
-        console.log({ message: "Error occurred: " + err });
-        return res.status(500).send("An unexpected error occurred");
-      }
-      res.json(row);
-    }
-  );
-};
-
-const getPlayersLastName = (req, res) => {
-  pool.query(
-    `SELECT * FROM players WHERE last_name = ${req.params.last_name}`,
-    (err, row) => {
-      if (err) {
-        console.log({ message: "Error occurred: " + err });
-        return res.status(500).send("An unexpected error occurred");
-      }
-      res.json(row);
-    }
-  );
 };
 
 const create = (req, res) => {
@@ -67,22 +40,17 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  pool.query(
-    `DELETE FROM players WHERE id = ${req.params.id}`,
-    (err, row) => {
-      if (err) {
-        console.log({ message: "Error occurred: " + err });
-        return res.status(500).send("An unexpected error occurred");
-      }
-      res.json(row);
+  pool.query(`DELETE FROM players WHERE id = ${req.params.id}`, (err, row) => {
+    if (err) {
+      console.log({ message: "Error occurred: " + err });
+      return res.status(500).send("An unexpected error occurred");
     }
-  );
+    res.json(row);
+  });
 };
 
 module.exports = {
   getPlayers,
-  getPlayersFirstName,
-  getPlayersLastName,
   create,
   update,
   remove,
