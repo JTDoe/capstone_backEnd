@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 const pool = require("../mysql/connection.js");
-// const { handleSQLError } = require("../mysql/error.js");
 
 const getCoaches = (req, res) => {
   pool.query("SELECT * FROM headcoaches", (err, rows) => {
@@ -8,7 +7,7 @@ const getCoaches = (req, res) => {
       console.log({ message: "Error occurred: " + err });
       return res.status(500).send("An unexpected error occurred");
     }
-    res.json(rows);
+    res.json(row);
   });
 };
 
@@ -20,8 +19,7 @@ const showTeamByCoach = (req, res) => {
         console.log({ message: "Error occurred: " + err });
         return res.status(500).send("An unexpected error occurred");
       }
-      console.log(row);
-      // res.json(row);
+      res.json(row);
     }
   );
 };
