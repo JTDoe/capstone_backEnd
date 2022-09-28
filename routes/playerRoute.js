@@ -5,7 +5,7 @@ const {
   create,
   update,
   remove,
-} = require("../Controllers/playerController");
+} = require("../controllers/playerController");
 
 router.get("/", getPlayers);
 router.post("/", create);

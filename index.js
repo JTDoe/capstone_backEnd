@@ -5,8 +5,7 @@ const coachesRouter = require("./routes/coachRoute");
 const teamsRouter = require("./routes/teamRoute");
 const playersRouter = require("./routes/playerRoute");
 
-
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3307;
 
 app.use(cors());
 app.use(express.json());

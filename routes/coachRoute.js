@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const {
   getCoaches,
+  show,
   create,
   update,
   remove,
-} = require("../Controllers/coachController");
+} = require("../controllers/coachController");
 
 router.get("/", getCoaches);
+router.get("/:id", show);
 router.post("/", create);
 router.put("/:id", update);
 router.delete("/:id", remove);

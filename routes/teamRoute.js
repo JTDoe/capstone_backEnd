@@ -6,7 +6,7 @@ const {
   create,
   update,
   remove,
-} = require("../Controllers/teamController");
+} = require("../controllers/teamController");
 
 router.get("/", list);
 router.get("/:team_name", show);

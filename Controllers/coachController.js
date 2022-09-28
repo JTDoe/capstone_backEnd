@@ -11,6 +11,19 @@ const getCoaches = (req, res) => {
   });
 };
 
+const show = (req, res) => {
+  pool.query(
+    `SELECT * FROM headcoaches WHERE id = ${req.params.id}`,
+    (err, row) => {
+      if (err) {
+        console.log({ message: "Error occurred: " + err });
+        return res.status(500).send("An unexpected error occurred");
+      }
+      res.json(row);
+    }
+  );
+};
+
 const create = (req, res) => {
   const { first_name, last_name, email } = req.body;
 
@@ -54,6 +67,7 @@ const remove = (req, res) => {
 
 module.exports = {
   getCoaches,
+  show,
   create,
   update,
   remove,
