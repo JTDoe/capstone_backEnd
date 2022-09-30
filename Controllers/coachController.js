@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const pool = require("../mysql/connection");
 
-const getCoaches = (req, res) => {
+const getCoaches = (_req, res) => {
   pool.query("SELECT * FROM headcoaches", (err, rows) => {
     if (err) {
       console.log({ message: "Error occurred: " + err });
@@ -26,10 +26,11 @@ const show = (req, res) => {
 
 const create = (req, res) => {
   const { first_name, last_name, email } = req.body;
+  console.log(req);
 
   pool.query(
     `INSERT INTO headcoaches (first_name, last_name, email) 
-      VALUES ("${first_name}","${last_name}", "${email}")`,
+      VALUES ('${first_name}','${last_name}', '${email}')`,
     (err, row) => {
       if (err) {
         console.log({ message: "Error occurred: " + err });

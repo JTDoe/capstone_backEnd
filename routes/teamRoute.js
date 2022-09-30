@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   list,
   show,
-  create,
+  // create,
   update,
   remove,
 } = require("../controllers/teamController");
