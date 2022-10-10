@@ -31,7 +31,7 @@
     "vercel": "^28.4.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   },
   "keywords": []
 }

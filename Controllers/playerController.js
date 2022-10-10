@@ -12,11 +12,11 @@ const getPlayers = (req, res) => {
 };
 
 const create = (req, res) => {
-  const { first_name, last_name, email } = req.body;
+  const { first_name, last_name } = req.body;
 
   pool.query(
-    `INSERT INTO players (first_name, last_name, email) 
-      VALUES ("${first_name}","${last_name}", "${email}")`,
+    `INSERT INTO players (first_name, last_name) 
+      VALUES ("${first_name}","${last_name}")`,
     (err, row) => {
       if (err) {
         console.log({ message: "Error occurred: " + err });
