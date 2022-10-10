@@ -10,7 +10,7 @@ const {
 
 router.get("/", getCoaches);
 router.get("/:id", show);
-router.post("/headCoaches", create);
+router.post("/", create);
 router.put("/:id", update);
 router.delete("/:id", remove);
 
